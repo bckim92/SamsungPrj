@@ -1,4 +1,0 @@
-/home/vllab/Desktop/SamsungPrj/build/CMakeFiles/main.dir
-/home/vllab/Desktop/SamsungPrj/build/CMakeFiles/sfm.dir
-/home/vllab/Desktop/SamsungPrj/build/CMakeFiles/sfmshared.dir
-/home/vllab/Desktop/SamsungPrj/build/CMakeFiles/sfmstatic.dir

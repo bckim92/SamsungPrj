@@ -1,3 +1,4 @@
+mkdir build
 cd build
-cmake DOpenMVG_DIR:STRING="YourInstallPath/share/openMVG/cmake"
+cmake ..
 make
