@@ -111,6 +111,45 @@ main/fast:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+#=============================================================================
+# Target rules for targets named sfm
+
+# Build rule for target.
+sfm: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sfm
+.PHONY : sfm
+
+# fast build rule for target.
+sfm/fast:
+	$(MAKE) -f CMakeFiles/sfm.dir/build.make CMakeFiles/sfm.dir/build
+.PHONY : sfm/fast
+
+#=============================================================================
+# Target rules for targets named sfmshared
+
+# Build rule for target.
+sfmshared: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sfmshared
+.PHONY : sfmshared
+
+# fast build rule for target.
+sfmshared/fast:
+	$(MAKE) -f CMakeFiles/sfmshared.dir/build.make CMakeFiles/sfmshared.dir/build
+.PHONY : sfmshared/fast
+
+#=============================================================================
+# Target rules for targets named sfmstatic
+
+# Build rule for target.
+sfmstatic: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sfmstatic
+.PHONY : sfmstatic
+
+# fast build rule for target.
+sfmstatic/fast:
+	$(MAKE) -f CMakeFiles/sfmstatic.dir/build.make CMakeFiles/sfmstatic.dir/build
+.PHONY : sfmstatic/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -135,6 +174,54 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/calibration.o: src/calibration.cpp.o
+.PHONY : src/calibration.o
+
+# target to build an object file
+src/calibration.cpp.o:
+	$(MAKE) -f CMakeFiles/sfm.dir/build.make CMakeFiles/sfm.dir/src/calibration.cpp.o
+.PHONY : src/calibration.cpp.o
+
+src/calibration.i: src/calibration.cpp.i
+.PHONY : src/calibration.i
+
+# target to preprocess a source file
+src/calibration.cpp.i:
+	$(MAKE) -f CMakeFiles/sfm.dir/build.make CMakeFiles/sfm.dir/src/calibration.cpp.i
+.PHONY : src/calibration.cpp.i
+
+src/calibration.s: src/calibration.cpp.s
+.PHONY : src/calibration.s
+
+# target to generate assembly for a file
+src/calibration.cpp.s:
+	$(MAKE) -f CMakeFiles/sfm.dir/build.make CMakeFiles/sfm.dir/src/calibration.cpp.s
+.PHONY : src/calibration.cpp.s
+
+src/utility.o: src/utility.cpp.o
+.PHONY : src/utility.o
+
+# target to build an object file
+src/utility.cpp.o:
+	$(MAKE) -f CMakeFiles/sfm.dir/build.make CMakeFiles/sfm.dir/src/utility.cpp.o
+.PHONY : src/utility.cpp.o
+
+src/utility.i: src/utility.cpp.i
+.PHONY : src/utility.i
+
+# target to preprocess a source file
+src/utility.cpp.i:
+	$(MAKE) -f CMakeFiles/sfm.dir/build.make CMakeFiles/sfm.dir/src/utility.cpp.i
+.PHONY : src/utility.cpp.i
+
+src/utility.s: src/utility.cpp.s
+.PHONY : src/utility.s
+
+# target to generate assembly for a file
+src/utility.cpp.s:
+	$(MAKE) -f CMakeFiles/sfm.dir/build.make CMakeFiles/sfm.dir/src/utility.cpp.s
+.PHONY : src/utility.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -144,9 +231,18 @@ help:
 	@echo "... edit_cache"
 	@echo "... main"
 	@echo "... rebuild_cache"
+	@echo "... sfm"
+	@echo "... sfmshared"
+	@echo "... sfmstatic"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/calibration.o"
+	@echo "... src/calibration.i"
+	@echo "... src/calibration.s"
+	@echo "... src/utility.o"
+	@echo "... src/utility.i"
+	@echo "... src/utility.s"
 .PHONY : help
 
 

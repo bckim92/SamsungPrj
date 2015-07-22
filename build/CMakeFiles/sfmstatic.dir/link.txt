@@ -1,0 +1,2 @@
+/usr/bin/ar cr ../lib/libsfm.a  CMakeFiles/sfm.dir/src/utility.cpp.o CMakeFiles/sfm.dir/src/calibration.cpp.o
+/usr/bin/ranlib ../lib/libsfm.a

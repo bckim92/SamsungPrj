@@ -261,3 +261,39 @@ Parsed CXX implicit link information from above output:
   implicit fwks: []
 
 
+Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_CXX11 succeded with the following output:
+Change Dir: /home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec1098999627/fast"
+make[1]: Entering directory `/home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1098999627.dir/build.make CMakeFiles/cmTryCompileExec1098999627.dir/build
+make[2]: Entering directory `/home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec1098999627.dir/src.cxx.o
+/usr/bin/c++    -std=c++11 -DCOMPILER_SUPPORTS_CXX11   -std=c++11 -o CMakeFiles/cmTryCompileExec1098999627.dir/src.cxx.o -c /home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec1098999627
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1098999627.dir/link.txt --verbose=1
+/usr/bin/c++   -std=c++11 -DCOMPILER_SUPPORTS_CXX11    CMakeFiles/cmTryCompileExec1098999627.dir/src.cxx.o  -o cmTryCompileExec1098999627 -rdynamic 
+make[2]: Leaving directory `/home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0;}
+Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_CXX0X succeded with the following output:
+Change Dir: /home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/make "cmTryCompileExec3531509793/fast"
+make[1]: Entering directory `/home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTryCompileExec3531509793.dir/build.make CMakeFiles/cmTryCompileExec3531509793.dir/build
+make[2]: Entering directory `/home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building CXX object CMakeFiles/cmTryCompileExec3531509793.dir/src.cxx.o
+/usr/bin/c++    -std=c++11 -DCOMPILER_SUPPORTS_CXX0X   -std=c++0x -o CMakeFiles/cmTryCompileExec3531509793.dir/src.cxx.o -c /home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTryCompileExec3531509793
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3531509793.dir/link.txt --verbose=1
+/usr/bin/c++   -std=c++11 -DCOMPILER_SUPPORTS_CXX0X    CMakeFiles/cmTryCompileExec3531509793.dir/src.cxx.o  -o cmTryCompileExec3531509793 -rdynamic 
+make[2]: Leaving directory `/home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory `/home/vllab/Desktop/SamsungPrj/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { return 0;}

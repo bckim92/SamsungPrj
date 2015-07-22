@@ -56,7 +56,7 @@ CMAKE_BINARY_DIR = /home/vllab/Desktop/SamsungPrj/build
 # Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
-CMakeFiles/main.dir/all:
+CMakeFiles/main.dir/all: CMakeFiles/sfmshared.dir/all
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/vllab/Desktop/SamsungPrj/build/CMakeFiles  1
@@ -69,7 +69,7 @@ all: CMakeFiles/main.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vllab/Desktop/SamsungPrj/build/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vllab/Desktop/SamsungPrj/build/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/vllab/Desktop/SamsungPrj/build/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
@@ -85,6 +85,111 @@ CMakeFiles/main.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/main.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/sfm.dir
+
+# All Build rule for target.
+CMakeFiles/sfm.dir/all:
+	$(MAKE) -f CMakeFiles/sfm.dir/build.make CMakeFiles/sfm.dir/depend
+	$(MAKE) -f CMakeFiles/sfm.dir/build.make CMakeFiles/sfm.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vllab/Desktop/SamsungPrj/build/CMakeFiles  2 3
+	@echo "Built target sfm"
+.PHONY : CMakeFiles/sfm.dir/all
+
+# Include target in all.
+all: CMakeFiles/sfm.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/sfm.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vllab/Desktop/SamsungPrj/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sfm.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vllab/Desktop/SamsungPrj/build/CMakeFiles 0
+.PHONY : CMakeFiles/sfm.dir/rule
+
+# Convenience name for target.
+sfm: CMakeFiles/sfm.dir/rule
+.PHONY : sfm
+
+# clean rule for target.
+CMakeFiles/sfm.dir/clean:
+	$(MAKE) -f CMakeFiles/sfm.dir/build.make CMakeFiles/sfm.dir/clean
+.PHONY : CMakeFiles/sfm.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/sfm.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/sfmshared.dir
+
+# All Build rule for target.
+CMakeFiles/sfmshared.dir/all: CMakeFiles/sfm.dir/all
+	$(MAKE) -f CMakeFiles/sfmshared.dir/build.make CMakeFiles/sfmshared.dir/depend
+	$(MAKE) -f CMakeFiles/sfmshared.dir/build.make CMakeFiles/sfmshared.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vllab/Desktop/SamsungPrj/build/CMakeFiles 
+	@echo "Built target sfmshared"
+.PHONY : CMakeFiles/sfmshared.dir/all
+
+# Include target in all.
+all: CMakeFiles/sfmshared.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/sfmshared.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vllab/Desktop/SamsungPrj/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sfmshared.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vllab/Desktop/SamsungPrj/build/CMakeFiles 0
+.PHONY : CMakeFiles/sfmshared.dir/rule
+
+# Convenience name for target.
+sfmshared: CMakeFiles/sfmshared.dir/rule
+.PHONY : sfmshared
+
+# clean rule for target.
+CMakeFiles/sfmshared.dir/clean:
+	$(MAKE) -f CMakeFiles/sfmshared.dir/build.make CMakeFiles/sfmshared.dir/clean
+.PHONY : CMakeFiles/sfmshared.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/sfmshared.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/sfmstatic.dir
+
+# All Build rule for target.
+CMakeFiles/sfmstatic.dir/all: CMakeFiles/sfm.dir/all
+	$(MAKE) -f CMakeFiles/sfmstatic.dir/build.make CMakeFiles/sfmstatic.dir/depend
+	$(MAKE) -f CMakeFiles/sfmstatic.dir/build.make CMakeFiles/sfmstatic.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vllab/Desktop/SamsungPrj/build/CMakeFiles 
+	@echo "Built target sfmstatic"
+.PHONY : CMakeFiles/sfmstatic.dir/all
+
+# Include target in all.
+all: CMakeFiles/sfmstatic.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/sfmstatic.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vllab/Desktop/SamsungPrj/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sfmstatic.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vllab/Desktop/SamsungPrj/build/CMakeFiles 0
+.PHONY : CMakeFiles/sfmstatic.dir/rule
+
+# Convenience name for target.
+sfmstatic: CMakeFiles/sfmstatic.dir/rule
+.PHONY : sfmstatic
+
+# clean rule for target.
+CMakeFiles/sfmstatic.dir/clean:
+	$(MAKE) -f CMakeFiles/sfmstatic.dir/build.make CMakeFiles/sfmstatic.dir/clean
+.PHONY : CMakeFiles/sfmstatic.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/sfmstatic.dir/clean
 .PHONY : clean
 
 #=============================================================================
