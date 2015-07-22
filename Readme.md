@@ -1,16 +1,16 @@
 
 # Dependency
-	OpenCV
-	OpenMVG
+OpenCV  
+OpenMVG  
 
 # Installation Guide
 
-	## Install OpenCV
-	## Install OpenMVG
+## Install OpenCV
+## Install OpenMVG
 
 # Build Instruction
 
-mkdir build
-cd build
-cmake ..
-make
+mkdir build  
+cd build  
+cmake ..  
+make  
