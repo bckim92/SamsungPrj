@@ -9,7 +9,7 @@ OpenMVG
 ## Install OpenMVG
 
 # Build Instruction
-  mkdir build 
-  cd build
-  cmake ..
-  make
+    mkdir build 
+    cd build
+    cmake ..
+    make
