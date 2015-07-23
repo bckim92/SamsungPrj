@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "utility.h"
+#include "calibration.h"
 
 typedef openMVG::image::Image<openMVG::image::RGBColor> RGB;
 
@@ -19,6 +20,7 @@ int main(int argc, char **argv) {
 
 	std::vector<RGB> images;
 	sfm::readFiles(filenames, images);
+	sfm::writeCalibration(filenames, 1.0f, 9, 6);
 
 	return 0;
 }
