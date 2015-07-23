@@ -20,7 +20,8 @@ int main(int argc, char **argv) {
 
 	std::vector<RGB> images;
 	sfm::readFiles(filenames, images);
-	sfm::writeCalibration(filenames, 1.0f, 9, 6);
+	//sfm::writeCalibration(filenames, 1.0f, 9, 6);
+	sfm::readCalibration();
 
 	return 0;
 }

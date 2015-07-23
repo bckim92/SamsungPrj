@@ -36,6 +36,7 @@ SET(LIBRARIES
 SET(SOURCES
 	src/utility.cpp
 	src/calibration.cpp
+	src/feature_and_matching.cpp
 )
 
 SET(EXECUTABLE_OUTPUT_PATH ${MY_DIR}/bin)
