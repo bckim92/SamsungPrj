@@ -34,9 +34,10 @@ SET(LIBRARIES
 )
 
 SET(SOURCES
-	src/utility.cpp
-	src/calibration.cpp
-	src/feature_and_matching.cpp
+	src/Utility.cpp
+	src/Calibration.cpp
+	src/FindCameraMatrices.cpp
+	src/Triangulation.cpp
 )
 
 SET(EXECUTABLE_OUTPUT_PATH ${MY_DIR}/bin)

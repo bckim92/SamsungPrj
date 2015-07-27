@@ -7,7 +7,7 @@
 #include <vector>
 #include <string>
 
-#include "calibration.h"
+#include "Calibration.h"
 
 namespace sfm {
 	using namespace std;

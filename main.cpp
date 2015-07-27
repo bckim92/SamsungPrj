@@ -1,12 +1,12 @@
-#include "openMVG/image/image.hpp"
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "utility.h"
 #include "calibration.h"
-
-typedef openMVG::image::Image<openMVG::image::RGBColor> RGB;
 
 int main(int argc, char **argv) {
 	std::vector<std::string> filenames;
@@ -18,10 +18,10 @@ int main(int argc, char **argv) {
 		return -1;
 	}
 
-	std::vector<RGB> images;
+	std::vector<cv::Mat> images;
 	sfm::readFiles(filenames, images);
-	//sfm::writeCalibration(filenames, 1.0f, 9, 6);
-	sfm::readCalibration();
+	sfm::writeCalibration(filenames, 1.0f, 9, 6);
+	//sfm::readCalibration();
 
 	return 0;
 }

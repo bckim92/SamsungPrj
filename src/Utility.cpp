@@ -1,4 +1,5 @@
-#include "openMVG/image/image.hpp"
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 
 #include "boost/filesystem/operations.hpp"
 #include "boost/filesystem/path.hpp"
@@ -7,11 +8,10 @@
 #include <string>
 #include <vector>
 
-#include "utility.h"
+#include "Utility.h"
 
 namespace sfm {
 	namespace fs = boost::filesystem;
-	typedef openMVG::image::Image<openMVG::image::RGBColor> RGB;
 
 	void listFiles(std::string dirname, std::vector<std::string> &filenames) {
 		fs::path full_path(fs::initial_path<fs::path>());
@@ -55,13 +55,13 @@ namespace sfm {
 		}
 	}
 
-	void readFiles(std::vector<std::string> filenames, std::vector<RGB> &images) {
+	void readFiles(std::vector<std::string> filenames, std::vector<cv::Mat> &images) {
 		for (int i = 0; i < filenames.size(); ++i) {
-			RGB image;
+			cv::Mat image;
 			char filename[filenames[i].size()+1];
 			strcpy(filename, filenames[i].c_str());
 			std::cout<<filename<<std::endl;
-			openMVG::image::ReadImage(filename, &image);
+			image = cv::imread(filename, CV_LOAD_IMAGE_COLOR);
 			images.push_back(image);
 		}
 	}
