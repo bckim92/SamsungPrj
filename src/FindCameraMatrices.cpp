@@ -1,6 +1,3 @@
-#include "opencv2/core/core.hpp"
-#include "opencv2/features2d/features2d.hpp"
-#include "opencv2/highgui/highgui.hpp"
 #include "opencv2/calib3d/calib3d.hpp"
 
 #include <string>
@@ -12,16 +9,23 @@ namespace sfm {
 	using namespace std;
 	using namespace cv;
 
-	void findCameraMatrix() {
-	}
-
-	void computeEssential(Mat imageL, Mat imageR, Mat camera, Mat &E) {
+	bool findCameraMatrix(
+			Mat imageL,
+			Mat imageR,
+			Mat K,
+			Matx34d &P0,
+			Matx34d &P1,
+			vector<KeyPoint> &pt_set0,
+			vector<KeyPoint> &pt_set1) {
+		cout << "Find camera matrix..." << endl;
 		// Detect the keypoints
 		ORB detector;
 		vector<KeyPoint> keypointsL, keypointsR;
 		Mat descriptorsL, descriptorsR;
 		detector(imageL, noArray(), keypointsL, descriptorsL);
 		detector(imageR, noArray(), keypointsR, descriptorsR);
+		pt_set0 = keypointsL;
+		pt_set1 = keypointsR;
 		
 		// Matching descriptor vectors
 		BFMatcher matcher(NORM_HAMMING);
@@ -40,10 +44,16 @@ namespace sfm {
 				max_dist = dist;
 		}
 
+		// Select good matches
 		vector<DMatch> good_matches;
 		for (int i = 0; i < matches_size; ++i) {
 			if (matches[i].distance < 3*min_dist)
 				good_matches.push_back(matches[i]);
+		}
+
+		if (good_matches.size() < 10) {
+			cerr << "not enough inliers after F matrix" << endl;
+			return false;
 		}
 
 		vector<Point2f> pointsL, pointsR;
@@ -53,32 +63,55 @@ namespace sfm {
 			pointsR.push_back(keypointsR[good_matches[i].trainIdx].pt);
 		}
 
-		Mat fundamental = findFundamentalMat(pointsL, pointsR, FM_RANSAC, 3, 0.99);
-		E = camera.t() * fundamental * camera.t();
-	}
+		// Compute essential matrix
+		Mat F = findFundamentalMat(pointsL, pointsR, FM_RANSAC, 3, 0.99);
+		Mat E = K.t() * F * K.t();
 
-	void EtoRandT(Mat E, Mat &U, Mat &V_t, Mat &W) {
-		// SVD decomposition
-		SVD svd = SVD(E);
-		U = svd.u;
-		V_t = svd.vt;
-
-		Matx33d W(0,-1,0
-				  1,0,0,
-				  0,0,1);
-
-		Mat_<double> R = svd.u * Mat(W) * svd.vt;
-		Mat_<double> t = svd.u.col(2);
-
-		if (CheckCoherentRotation(R)) {
-			Matx34d P0(1,0,0,0,
-					   0,1,0,0,
-					   0,0,1,0);
-			Matx34d P1(R(0,0),R(0,1),R(0,2),t(0),
-					   R(1,0),R(1,1),R(1,2),t(1),
-					   R(2,0),R(2,1),R(2,2),t(2));
-		} else {
+		if (fabsf(determinant(E)) > 1e-07) {
+			cout << "det(E) != 0 : " << determinant(E) << endl;
+			P0 = 0;
+			P1 = 0;
+			return false;
 		}
+
+		cout << "K : " << K << endl;
+		cout << "F : " << F << endl;
+		cout << "E : " << E << endl;
+		cout << "good match size : " << good_matches.size() << endl;
+
+		// SVD decomposition
+		Mat_<double> R1,R2,t1,t2;
+		DecomposeEtoRandT(E,R1,R2,t1,t2);
+
+		if (determinant(R1) + 1.0 < 1e-09) {
+			cout << "det(R) == -1 [" << determinant(R1) << "]: flip E's sign" << endl;
+			DecomposeEtoRandT(-E,R1,R2,t1,t2);
+		}
+
+		cout << "R1 : " << R1 << endl;
+		cout << "R2 : " << R2 << endl;
+		cout << "t1 : " << t1 << endl;
+		cout << "t2 : " << t2 << endl;
+
+		if (!CheckCoherentRotation(R1)) {
+			cout << "resulting rotation is not coherent\n" << endl;
+			P0 = 0;
+			P1 = 0;
+			return false;
+		}
+
+		Matx34d p0(1,0,0,0,
+				 0,1,0,0,
+				 0,0,1,0);
+		// TODO : select answer from 4 cases
+		Matx34d p1(R1(0,0),R1(0,1),R1(0,2),t1(0),
+				 R1(1,0),R1(1,1),R1(1,2),t1(1),
+				 R1(2,0),R1(2,1),R1(2,2),t1(2));
+
+		P0 = p0;
+		P1 = p1;
+
+		return true;
 	}
 
 	bool CheckCoherentRotation(Mat_<double> &R) {
@@ -87,6 +120,27 @@ namespace sfm {
 			return false;
 		}
 		return true;
+	}
+
+	void DecomposeEtoRandT(
+			Mat E,
+			Mat_<double> &R1,
+			Mat_<double> &R2,
+			Mat_<double> &t1,
+			Mat_<double> &t2){
+		SVD svd = SVD(E);
+
+		Matx33d W(0,-1,0,
+				  1,0,0,
+				  0,0,1);
+		Matx33d Wt(0,1,0,
+				   -1,0,0,
+				   0,0,1);
+
+		R1 = svd.u * Mat(W) * svd.vt;
+		R2 = svd.u * Mat(Wt) * svd.vt;
+		t1 = svd.u.col(2);
+		t2 = -svd.u.col(2);
 	}
 
 	bool testTriangulation() {

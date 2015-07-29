@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include <Triangulation.h>
 
 namespace sfm {
@@ -9,21 +11,26 @@ namespace sfm {
 			Matx34d P,
 			Point3d u1,
 			Matx34d P1) {
+		cout << "Linear LS triangulation" << endl;
+		double wi = 1, wi1 = 1;
 		//build A matrix
 		Matx43d A(u.x*P(2,0)-P(0,0),u.x*P(2,1)-P(0,1),u.x*P(2,2)-P(0,2),
 				  u.y*P(2,0)-P(1,0),u.y*P(2,1)-P(1,1),u.y*P(2,2)-P(1,2),
 				  u1.x*P1(2,0)-P1(0,0), u1.x*P1(2,1)-P1(0,1),u1.x*P1(2,2)-P1(0,2),
 				  u1.y*P1(2,0)-P1(1,0), u1.y*P1(2,1)-P1(1,1),u1.y*P1(2,2)-P1(1,2)
 				  );
+		cout << "A : " << A << endl;
 
 		//build B vector
 		Matx41d B(-(u.x*P(2,3)-P(0,3)),
 				  -(u.y*P(2,3)-P(1,3)),
 				  -(u1.x*P1(2,3)-P1(0,3)),
 				  -(u1.y*P1(2,3)-P1(1,3)));
+		cout << "B : " << B << endl;
 
 		//solve for X
 		Mat_<double> X;
+		cout << "solve for X" << endl;
 		solve(A,B,X,DECOMP_SVD);
 		return X;
 	}
@@ -31,12 +38,15 @@ namespace sfm {
 	double TriangulatePoints(
 			const vector<KeyPoint> &pt_set1,
 			const vector<KeyPoint> &pt_set2,
-			const Mat &Kinv,
-			const Matx34d &P,
+			const Mat &K,
+			const Matx34d &P0,
 			const Matx34d &P1,
 			vector<Point3d> &pointcloud) {
+		cout << "Triangulate points..." << endl;
+		Mat Kinv = K.inv();
 		vector<double> reproj_error;
 		unsigned int pts_size = pt_set1.size();
+		Mat_<double> KP1 = K * Mat(P1);
 		for (unsigned int i = 0; i < pts_size; ++i) {
 			// convert to normalized homogeneous coordinates
 			Point2f kp = pt_set1[i].pt;
@@ -55,10 +65,10 @@ namespace sfm {
 			u1.z = um1(2);
 
 			// triangulate
-			Mat_<double> X = LinearLSTriangulation(u, P, u1, P1);
+			Mat_<double> X = LinearLSTriangulation(u, P0, u1, P1);
 
 			// reprojection error
-			Mat_<double> xPt_img = K * Mat(P1) * X;
+			Mat_<double> xPt_img = KP1 * X;
 			Point2f xPt_img_(xPt_img(0)/xPt_img(2),xPt_img(1)/xPt_img(2));
 			reproj_error.push_back(norm(xPt_img_ - kp1));
 

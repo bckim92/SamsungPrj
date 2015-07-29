@@ -1,11 +1,4 @@
-#include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include "opencv2/calib3d/calib3d.hpp"
-#include "opencv2/opencv.hpp"
-
 #include <iostream>
-#include <vector>
-#include <string>
 
 #include "Calibration.h"
 
@@ -62,12 +55,11 @@ namespace sfm {
 		fs.release();
 	}
 
-	void readCalibration() {
-		Mat cameraMatrix;
-		Mat distCoeffs;
-
+	void readCalibration(
+			Mat &K,
+			Mat &distCoeffs) {
 		FileStorage fs("data/calibration.xml", CV_STORAGE_READ);
-		fs["cameraMatrix"]>>cameraMatrix;
+		fs["cameraMatrix"]>>K;
 		fs["distCoeffs"]>>distCoeffs;
 		fs.release();
 	}
