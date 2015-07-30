@@ -20,7 +20,7 @@ namespace sfm {
 			point.x = points[i].x;
 			point.y = points[i].y;
 			point.z = points[i].z;
-			cout << "x : " << point.x << "y : " << point.y << "z : " << point.z << endl;
+			cout << "x : " << point.x << " y : " << point.y << " z : " << point.z << endl;
 			cloud->points.push_back(point);
 		}
 

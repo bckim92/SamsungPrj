@@ -30,6 +30,7 @@ int main(int argc, char **argv) {
 	cv::Mat K, distCoeffs;
 	if (calib_bool) {
 		sfm::writeCalibration(filenames, 1.0f, 9, 6);
+		return 0;
 	} else
 		sfm::readCalibration(K, distCoeffs);
 
@@ -37,8 +38,8 @@ int main(int argc, char **argv) {
 	cv::Matx34d P0, P1;
 	std::vector<cv::KeyPoint> keypointsL, keypointsR;
 	sfm::findCameraMatrix(
-			images[0],
 			images[1],
+			images[2],
 			K,
 			P0,
 			P1,

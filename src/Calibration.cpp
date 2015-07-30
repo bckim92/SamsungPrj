@@ -49,7 +49,7 @@ namespace sfm {
 						+ CV_CALIB_FIX_K3
 						);
 
-		FileStorage fs("data/calibration.xml", CV_STORAGE_WRITE);
+		FileStorage fs("calib/calibration.xml", CV_STORAGE_WRITE);
 		fs << "cameraMatrix" << cameraMatrix;
 		fs << "distCoeffs" << distCoeffs;
 		fs.release();
@@ -58,7 +58,7 @@ namespace sfm {
 	void readCalibration(
 			Mat &K,
 			Mat &distCoeffs) {
-		FileStorage fs("data/calibration.xml", CV_STORAGE_READ);
+		FileStorage fs("calib/calibration.xml", CV_STORAGE_READ);
 		fs["cameraMatrix"]>>K;
 		fs["distCoeffs"]>>distCoeffs;
 		fs.release();

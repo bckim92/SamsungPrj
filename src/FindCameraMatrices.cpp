@@ -75,8 +75,6 @@ namespace sfm {
 		}
 
 		cout << "K : " << K << endl;
-		cout << "F : " << F << endl;
-		cout << "E : " << E << endl;
 		cout << "good match size : " << good_matches.size() << endl;
 
 		// SVD decomposition
@@ -87,11 +85,6 @@ namespace sfm {
 			cout << "det(R) == -1 [" << determinant(R1) << "]: flip E's sign" << endl;
 			DecomposeEtoRandT(-E,R1,R2,t1,t2);
 		}
-
-		cout << "R1 : " << R1 << endl;
-		cout << "R2 : " << R2 << endl;
-		cout << "t1 : " << t1 << endl;
-		cout << "t2 : " << t2 << endl;
 
 		if (!CheckCoherentRotation(R1)) {
 			cout << "resulting rotation is not coherent\n" << endl;
@@ -110,6 +103,9 @@ namespace sfm {
 
 		P0 = p0;
 		P1 = p1;
+
+		cout << "P0 : " << P0 << endl;
+		cout << "P1 : " << P1 << endl;
 
 		return true;
 	}
@@ -143,6 +139,11 @@ namespace sfm {
 		t2 = -svd.u.col(2);
 	}
 
-	bool testTriangulation() {
+	bool testTriangulation(
+			const vector<Point3d> &pointcloud,
+			const Matx34d &P,
+			vector<uchar> &status
+			) {
+		vector<Point3d> pointcloud_pt3d
 	}
 }
