@@ -18,7 +18,6 @@ namespace sfm {
 	double TriangulatePoints(
 			const vector<KeyPoint> &pt_set1,
 			const vector<KeyPoint> &pt_set2,
-			const Mat &K,
 			const Matx34d &P,
 			const Matx34d &P1,
 			vector<Point3d> &pointcloud);

@@ -38,10 +38,11 @@ namespace sfm {
 	double TriangulatePoints(
 			const vector<KeyPoint> &pt_set1,
 			const vector<KeyPoint> &pt_set2,
-			const Mat &K,
 			const Matx34d &P0,
 			const Matx34d &P1,
 			vector<Point3d> &pointcloud) {
+		return -1;
+		/*
 		cout << "Triangulate points..." << endl;
 		Mat Kinv = K.inv();
 		vector<double> reproj_error;
@@ -78,5 +79,6 @@ namespace sfm {
 
 		Scalar me = mean(reproj_error);
 		return me[0];
+		*/
 	}
 }

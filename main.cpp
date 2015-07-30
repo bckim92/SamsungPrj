@@ -45,6 +45,11 @@ int main(int argc, char **argv) {
 			keypointsR);
 
 	// Triangulation
+	cv::Mat X;
+	std::cout << "P0 : " << P0 << std::endl;
+	std::cout << "P1 : " << P1 << std::endl;
+	cv::triangulatePoints(P0,P1,keypointsL,keypointsR,X);
+	/*
 	std::vector<cv::Point3d> pointcloud;
 	sfm::TriangulatePoints(
 			keypointsL,
@@ -54,6 +59,7 @@ int main(int argc, char **argv) {
 			P1,
 			pointcloud
 			);
+	*/
 
 	return 0;
 }
