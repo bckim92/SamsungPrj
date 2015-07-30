@@ -9,13 +9,8 @@
 
 namespace sfm {
 	using namespace cv;
-	Mat_<double> LinearLSTriangulation(
-			Point3d u,
-			Matx34d P,
-			Point3d u1,
-			Matx34d P1);
 
-	double TriangulatePoints(
+	void TriangulatePoints(
 			const vector<KeyPoint> &pt_set1,
 			const vector<KeyPoint> &pt_set2,
 			const Matx34d &P,

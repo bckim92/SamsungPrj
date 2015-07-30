@@ -9,6 +9,7 @@
 #include "Calibration.h"
 #include "FindCameraMatrices.h"
 #include "Triangulation.h"
+#include "Visualizer.h"
 
 bool calib_bool = false;
 
@@ -45,21 +46,12 @@ int main(int argc, char **argv) {
 			keypointsR);
 
 	// Triangulation
-	cv::Mat X;
-	std::cout << "P0 : " << P0 << std::endl;
-	std::cout << "P1 : " << P1 << std::endl;
-	cv::triangulatePoints(P0,P1,keypointsL,keypointsR,X);
-	/*
 	std::vector<cv::Point3d> pointcloud;
-	sfm::TriangulatePoints(
-			keypointsL,
-			keypointsR,
-			K,
-			P0,
-			P1,
-			pointcloud
-			);
-	*/
+	sfm::TriangulatePoints(keypointsL,keypointsR,P0,P1,pointcloud);
+
+	// Visualization
+	sfm::Visualizer *visualizer(new sfm::Visualizer());
+	visualizer->spinOnce(pointcloud);
 
 	return 0;
 }
