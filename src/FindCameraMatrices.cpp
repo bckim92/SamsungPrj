@@ -96,7 +96,6 @@ namespace sfm {
 		Matx34d p0(1,0,0,0,
 				 0,1,0,0,
 				 0,0,1,0);
-		// TODO : select answer from 4 cases
 		Matx34d p1(R1(0,0),R1(0,1),R1(0,2),t1(0),
 				 R1(1,0),R1(1,1),R1(1,2),t1(1),
 				 R1(2,0),R1(2,1),R1(2,2),t1(2));
@@ -106,6 +105,19 @@ namespace sfm {
 
 		cout << "P0 : " << P0 << endl;
 		cout << "P1 : " << P1 << endl;
+
+		// Find appropriate P from 4 candidates
+		vector<Point3d> pointcloud;
+		vector<KeyPoint> corresp;
+		TriangulatePoints(pointsL, pointsR, P0, P1, pointcloud);
+		vector<uchar> tmp_status;
+
+		if (TestTriangulation(pointcloud,P1,tmp_status)) {
+			return true;
+		else {
+			P1 = Matx34d (R1(0,0),R1(0,1),R1(0,2),t2(0),
+						  R1(1,0),R1(1,1),R1(1,2),t2(1),
+						  R1(2,0),R1(2,1),R1(2,2),t2(2));
 
 		return true;
 	}
@@ -139,11 +151,31 @@ namespace sfm {
 		t2 = -svd.u.col(2);
 	}
 
-	bool testTriangulation(
+	bool TestTriangulation(
 			const vector<Point3d> &pointcloud,
 			const Matx34d &P,
 			vector<uchar> &status
 			) {
-		vector<Point3d> pointcloud_pt3d
+		vector<Point3d> pointcloud_projected(pointcloud.size());
+
+		Matx44d P4x4 = Matx44d::eye();
+		for (int i = 0; i < 12; ++i)
+			P4x4.val[i] = P.val[i];
+
+		perspectiveTransform(pointcloud, pointcloud_projected, P4x4); // or use warp
+
+		status.resize(pointcloud.size(),0);
+		for (int i = 0; i < pointcloud.size(); ++i) {
+			status[i] = (pointcloud_projected[i].z > 0) ? 1 : 0;
+		}
+
+		int count = countNonZero(status);
+
+		double percentage = ((double)count / (double)pointcloud.size());
+		cout << count << "/" << pointcloud.size() << " = " << percentage*100.0 << "% are in front of camera" << endl;
+
+		if (percentage < 0.75)
+			return false;
+		return true;
 	}
 }

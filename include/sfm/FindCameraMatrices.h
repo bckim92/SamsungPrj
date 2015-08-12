@@ -24,7 +24,7 @@ namespace sfm {
 			Mat_<double> &R2,
 			Mat_<double> &t1,
 			Mat_<double> &t2);
-	bool testTriangulation();
+	bool TestTriangulation();
 }
 
 #endif
