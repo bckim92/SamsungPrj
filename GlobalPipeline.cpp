@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sys/stat.h>
+#include <boost/chrono.hpp>
 
 using namespace std;
 
@@ -27,7 +28,10 @@ int main (int argc, char **argv) {
 		mkdir(output_dir.c_str(), S_IRWXU);
 	if (stat(matches_dir.c_str(), &info) != 0 || !S_ISDIR(info.st_mode))
 		mkdir(matches_dir.c_str(), S_IRWXU);
+
+	boost::chrono::time_point<boost::chrono::system_clock> start, end;
 	
+	start = boost::chrono::system_clock::now();
 	cout << "1. Instrinsics analysis" << endl;
 	string image_listing = OPENMVG_SFM_BIN + "/openMVG_main_SfMInit_ImageListing -i " + input_dir + " -o " + matches_dir + " -d " + camera_file_params;
 	system(image_listing.c_str());
@@ -56,5 +60,9 @@ int main (int argc, char **argv) {
 
 	string colorize_robust = OPENMVG_SFM_BIN + "/openMVG_main_ComputeSfM_DataColor -i " + reconstruction_dir + "/robust.json -o " + reconstruction_dir + "/robust_colorized.ply";
 	system(colorize_robust.c_str());
+
+	end = boost::chrono::system_clock::now();
+	boost::chrono::duration<double> elapsed = end - start;
+	cout << "Total time : " << elapsed.count() << "s" << endl;
 	return 0;
 }

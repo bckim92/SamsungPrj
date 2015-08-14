@@ -76,4 +76,6 @@ TARGET_LINK_LIBRARIES(main sfmshared)
 
 ADD_EXECUTABLE(GlobalPipeline GlobalPipeline.cpp)
 TARGET_LINK_LIBRARIES(GlobalPipeline sfmshared)
-target_compile_definitions(GlobalPipeline PRIVATE MY_DIR=${MY_DIR})
+
+ADD_EXECUTABLE(Calibration Calibration.cpp)
+TARGET_LINK_LIBRARIES(Calibration sfmshared)
