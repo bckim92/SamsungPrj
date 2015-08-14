@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <Triangulation.h>
+#include <sfm/Triangulation.h>
 
 namespace sfm {
 	using namespace std;

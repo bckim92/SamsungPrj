@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-#include "Utility.h"
+#include "sfm/Utility.h"
 
 namespace sfm {
 	namespace fs = boost::filesystem;

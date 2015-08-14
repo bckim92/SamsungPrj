@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-#include "FindCameraMatrices.h"
+#include "sfm/FindCameraMatrices.h"
 
 namespace sfm {
 	using namespace std;
@@ -109,6 +109,7 @@ namespace sfm {
 		// Find appropriate P from 4 candidates
 		vector<Point3d> pointcloud;
 		vector<KeyPoint> corresp;
+		/*
 		TriangulatePoints(pointsL, pointsR, P0, P1, pointcloud);
 		vector<uchar> tmp_status;
 
@@ -118,6 +119,7 @@ namespace sfm {
 			P1 = Matx34d (R1(0,0),R1(0,1),R1(0,2),t2(0),
 						  R1(1,0),R1(1,1),R1(1,2),t2(1),
 						  R1(2,0),R1(2,1),R1(2,2),t2(2));
+		*/
 
 		return true;
 	}

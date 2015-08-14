@@ -3,7 +3,7 @@
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 
-#include "Visualizer.h"
+#include "sfm/Visualizer.h"
 
 namespace sfm {
 	using namespace std;

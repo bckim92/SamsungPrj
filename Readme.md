@@ -1,13 +1,17 @@
-
 # Dependency
-OpenCV  
+OpenCV
+
+OpenMVG
+
 Boost
+
 PCL
 
 # Installation Guide
-
 ## Install OpenCV
 	sudo apt-get install libopencv-dev
+## Install OpenMVG
+	https://raw.githubusercontent.com/openMVG/openMVG/master/BUILD
 ## Install Boost
 	sudo apt-get install libboost-all-dev
 ## Install PCL

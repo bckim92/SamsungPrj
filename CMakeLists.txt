@@ -69,5 +69,11 @@ MESSAGE("Linking with these libraries: ${LIBRARIES}")
 INCLUDE_DIRECTORIES(${INCLUDE_DIRS})
 
 TARGET_LINK_LIBRARIES(sfmshared ${LIBRARIES})
+
+# Generate executables
 ADD_EXECUTABLE(main main.cpp)
 TARGET_LINK_LIBRARIES(main sfmshared)
+
+ADD_EXECUTABLE(GlobalPipeline GlobalPipeline.cpp)
+TARGET_LINK_LIBRARIES(GlobalPipeline sfmshared)
+TARGET_COMPILE_DEFINITIONS(GlobalPipeline PRIVATE MY_DIR=${MY_DIR})

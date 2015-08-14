@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Calibration.h"
+#include "sfm/Calibration.h"
 
 namespace sfm {
 	using namespace std;

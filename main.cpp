@@ -5,11 +5,11 @@
 #include <vector>
 #include <iostream>
 
-#include "Utility.h"
-#include "Calibration.h"
-#include "FindCameraMatrices.h"
-#include "Triangulation.h"
-#include "Visualizer.h"
+#include "sfm/Utility.h"
+#include "sfm/Calibration.h"
+#include "sfm/FindCameraMatrices.h"
+#include "sfm/Triangulation.h"
+#include "sfm/Visualizer.h"
 
 bool calib_bool = false;
 
