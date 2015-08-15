@@ -1,11 +1,8 @@
 # Dependency
-OpenCV
-
-OpenMVG
-
-Boost
-
-PCL
+	* OpenCV
+	* OpenMVG
+	* Boost
+	* PCL
 
 # Installation Guide
 ## Install OpenCV

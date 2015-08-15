@@ -46,6 +46,11 @@ SET(SOURCES
 	src/sfm/FindCameraMatrices.cpp
 	src/sfm/Triangulation.cpp
 	src/sfm/Visualizer.cpp
+
+	src/inertial/FrameProcessor.cpp
+	src/inertial/InertialTracker.cpp
+	src/inertial/ModelingProcessor.cpp
+	src/inertial/PoseEstimator.cpp
 )
 
 SET(EXECUTABLE_OUTPUT_PATH ${MY_DIR}/bin)
