@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8.12)
-PROJECT(SamsungPrj)
+PROJECT(SmartCampus)
 SET(MY_DIR ${PROJECT_SOURCE_DIR})
 
 # Guard against in-source build
@@ -41,11 +41,11 @@ SET(LIBRARIES
 )
 
 SET(SOURCES
-	src/Utility.cpp
-	src/Calibration.cpp
-	src/FindCameraMatrices.cpp
-	src/Triangulation.cpp
-	src/Visualizer.cpp
+	src/sfm/Utility.cpp
+	src/sfm/Calibration.cpp
+	src/sfm/FindCameraMatrices.cpp
+	src/sfm/Triangulation.cpp
+	src/sfm/Visualizer.cpp
 )
 
 SET(EXECUTABLE_OUTPUT_PATH ${MY_DIR}/bin)
@@ -58,24 +58,27 @@ LINK_DIRECTORIES(
 
 ADD_DEFINITIONS(${PCL_DEFINITIONS})
 
-ADD_LIBRARY(sfm OBJECT ${SOURCES})
-set_target_properties(sfm PROPERTIES POSITION_INDEPENDENT_CODE 1)
-ADD_LIBRARY(sfmshared SHARED $<TARGET_OBJECTS:sfm>)
-ADD_LIBRARY(sfmstatic STATIC $<TARGET_OBJECTS:sfm>)
-set_target_properties(sfmshared PROPERTIES OUTPUT_NAME sfm)
-set_target_properties(sfmstatic PROPERTIES OUTPUT_NAME sfm)
+ADD_LIBRARY(smartcampus OBJECT ${SOURCES})
+set_target_properties(smartcampus PROPERTIES POSITION_INDEPENDENT_CODE 1)
+ADD_LIBRARY(smartcampusshared SHARED $<TARGET_OBJECTS:smartcampus>)
+ADD_LIBRARY(smartcampusstatic STATIC $<TARGET_OBJECTS:smartcampus>)
+set_target_properties(smartcampusshared PROPERTIES OUTPUT_NAME smartcampus)
+set_target_properties(smartcampusstatic PROPERTIES OUTPUT_NAME smartcampus)
 MESSAGE("Linking with these libraries: ${LIBRARIES}")
 
 INCLUDE_DIRECTORIES(${INCLUDE_DIRS})
 
-TARGET_LINK_LIBRARIES(sfmshared ${LIBRARIES})
+TARGET_LINK_LIBRARIES(smartcampusshared ${LIBRARIES})
 
 # Generate executables
 ADD_EXECUTABLE(main main.cpp)
-TARGET_LINK_LIBRARIES(main sfmshared)
+TARGET_LINK_LIBRARIES(main smartcampusshared)
 
 ADD_EXECUTABLE(GlobalPipeline GlobalPipeline.cpp)
-TARGET_LINK_LIBRARIES(GlobalPipeline sfmshared)
+TARGET_LINK_LIBRARIES(GlobalPipeline smartcampusshared)
 
 ADD_EXECUTABLE(Calibration Calibration.cpp)
-TARGET_LINK_LIBRARIES(Calibration sfmshared)
+TARGET_LINK_LIBRARIES(Calibration smartcampusshared)
+
+ADD_EXECUTABLE(InertialPipeline InertialPipeline.cpp)
+TARGET_LINK_LIBRARIES(InertialPipeline smartcampusshared)
