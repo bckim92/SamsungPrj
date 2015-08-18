@@ -82,6 +82,9 @@ TARGET_LINK_LIBRARIES(main smartcampusshared)
 ADD_EXECUTABLE(GlobalPipeline GlobalPipeline.cpp)
 TARGET_LINK_LIBRARIES(GlobalPipeline smartcampusshared)
 
+ADD_EXECUTABLE(SequentialPipeline SequentialPipeline.cpp)
+TARGET_LINK_LIBRARIES(SequentialPipeline smartcampusshared)
+
 ADD_EXECUTABLE(Calibration Calibration.cpp)
 TARGET_LINK_LIBRARIES(Calibration smartcampusshared)
 
